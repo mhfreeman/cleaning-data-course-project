@@ -2,6 +2,7 @@
 if(!file.exists("courseproject")){
   dir.create("courseproject")
 }
+
 setwd("courseproject")
 
 cleanactivitydata <- function() {
