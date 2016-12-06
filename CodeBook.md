@@ -1,49 +1,169 @@
----
-Title: "Getting and Cleaning Data Course Project"
----
-
-This R script extracts and organizes human activity recognition data from UCI Machine Learning Repository (link below).
-
-https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-
 ## Codebook
+The output of this script writes a cleaned table to the working directory. The table and fields for this output are detailed below:
 
-The output of this script will be:
+# Table: 
+This table contains mean of mean and standard deviation measurements from the Samsung dataset
 
-Table: 
-activitydata - this table contains mean and standard deviation data from the test and training datasets.
+# Identifiers
+subject - The ID of the test subject
 
-Fields:
-tBodyAcc-XYZ
-tGravityAcc-XYZ
-tBodyAccJerk-XYZ
-tBodyGyro-XYZ
-tBodyGyroJerk-XYZ
-tBodyAccMag
-tGravityAccMag
-tBodyAccJerkMag
-tBodyGyroMag
-tBodyGyroJerkMag
-fBodyAcc-XYZ
-fBodyAccJerk-XYZ
-fBodyGyro-XYZ
-fBodyAccMag
-fBodyAccJerkMag
-fBodyGyroMag
-fBodyGyroJerkMag
+activity - The type of activity performed by the subject
 
-The set of variables that were estimated from these signals are: 
+# Measurements - All values are averaged by subject and activity
+tBodyAccmeanX
 
-mean(): Mean value
-std(): Standard deviation
+tBodyAccmeanY
 
-label_description: type of activity
-set: the source dataset (training or test)
+tBodyAccmeanZ
 
-## Data Summary
+tGravityAccmeanX
 
-You can include R code in the document as follows:
+tGravityAccmeanY
 
-```{r cars}
-summary(activitydata)
-```
+tGravityAccmeanZ
+
+tBodyAccJerkmeanX
+
+tBodyAccJerkmeanY
+
+tBodyAccJerkmeanZ
+
+tBodyGyromeanX
+
+tBodyGyromeanY
+
+tBodyGyromeanZ
+
+tBodyGyroJerkmeanX
+
+tBodyGyroJerkmeanY
+
+tBodyGyroJerkmeanZ
+
+tBodyAccMagmean
+
+tGravityAccMagmean
+
+tBodyAccJerkMagmean
+
+tBodyGyroMagmean
+
+tBodyGyroJerkMagmean
+
+fBodyAccmeanX
+
+fBodyAccmeanY
+
+fBodyAccmeanZ
+
+fBodyAccmeanFreqX
+
+fBodyAccmeanFreqY
+
+fBodyAccmeanFreqZ
+
+fBodyAccJerkmeanX
+
+fBodyAccJerkmeanY
+
+fBodyAccJerkmeanZ
+
+fBodyAccJerkmeanFreqX
+
+fBodyAccJerkmeanFreqY
+
+fBodyAccJerkmeanFreqZ
+
+fBodyGyromeanX
+
+fBodyGyromeanY
+
+fBodyGyromeanZ
+
+fBodyGyromeanFreqX
+
+fBodyGyromeanFreqY
+
+fBodyGyromeanFreqZ
+
+fBodyAccMagmean
+
+fBodyAccMagmeanFreq
+
+fBodyBodyAccJerkMagmean
+
+fBodyBodyAccJerkMagmeanFreq
+
+fBodyBodyGyroMagmean
+
+fBodyBodyGyroMagmeanFreq
+
+fBodyBodyGyroJerkMagmean
+
+fBodyBodyGyroJerkMagmeanFreq
+
+tBodyAccstdX
+
+tBodyAccstdY
+
+tBodyAccstdZ
+
+tGravityAccstdX
+
+tGravityAccstdY
+
+tGravityAccstdZ
+
+tBodyAccJerkstdX
+
+tBodyAccJerkstdY
+
+tBodyAccJerkstdZ
+
+tBodyGyrostdX
+
+tBodyGyrostdY
+
+tBodyGyrostdZ
+
+tBodyGyroJerkstdX
+
+tBodyGyroJerkstdY
+
+tBodyGyroJerkstdZ
+
+tBodyAccMagstd
+
+tGravityAccMagstd
+
+tBodyAccJerkMagstd
+
+tBodyGyroMagstd
+
+tBodyGyroJerkMagstd
+
+fBodyAccstdX
+
+fBodyAccstdY
+
+fBodyAccstdZ
+
+fBodyAccJerkstdX
+
+fBodyAccJerkstdY
+
+fBodyAccJerkstdZ
+
+fBodyGyrostdX
+
+fBodyGyrostdY
+
+fBodyGyrostdZ
+
+fBodyAccMagstd
+
+fBodyBodyAccJerkMagstd
+
+fBodyBodyGyroMagstd
+
+fBodyBodyGyroJerkMagstd

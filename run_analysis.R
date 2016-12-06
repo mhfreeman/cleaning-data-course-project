@@ -1,52 +1,41 @@
-# Create a directory to store files
-if(!file.exists("courseproject")){
-  dir.create("courseproject")
-}
+require(reshape2)
 
-setwd("courseproject")
+activitydata_mean <- function() {
 
-cleanactivitydata <- function() {
+# Merge/Clean Training and Test Sets
+activity <- read.table("UCI HAR Dataset/activity_labels.txt")
+colnames(activity) <- c("code","activity")
+columns <- read.table("UCI HAR Dataset/features.txt")
+columns <- gsub("[[:punct:]]","",columns$V2)
 
-# Download UCI HAR Dataset
-url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(url, destfile = "cpdata.zip", method = "curl")
-unzip("cpdata.zip")
-
-# Test Data Set
 test_set <- read.table("UCI HAR Dataset/test/X_test.txt")
-column_labels <- read.table("UCI HAR Dataset/features.txt")
-test_labels <- read.table("UCI HAR Dataset/test/y_test.txt")
+colnames(test_set) <- c(columns)
+testactivity_labels <- read.table("UCI HAR Dataset/test/y_test.txt")
+testsubject <- read.table("UCI HAR Dataset/test/subject_test.txt")
+colnames(testsubject) <- "subject"
+test_set <- cbind(testactivity_labels, testsubject, test_set)
+test_set <- merge(activity, test_set, by.x = "code", by.y = "V1", sort=FALSE)
+test_set <- test_set[,-1]
 
-colnames(test_set) <- column_labels[,2]
-colnames(test_labels) <- c("label")
-colnames(test_set) <- paste(column_labels[,2],"")
-
-meancols <- test_set[,grep("mean",colnames(test_set))]
-stdcols <- test_set[,grep("std",colnames(test_set))]
-
-test_set <- cbind(meancols,stdcols,test_labels)
-test_set$set <- "test"
-
-# Train Data Set
 train_set <- read.table("UCI HAR Dataset/train/X_train.txt")
-train_labels <- read.table("UCI HAR Dataset/train/y_train.txt")
+colnames(train_set) <- c(columns)
+trainactivity_labels <- read.table("UCI HAR Dataset/train/y_train.txt")
+trainsubject <- read.table("UCI HAR Dataset/train/subject_train.txt")
+colnames(trainsubject) <- "subject"
+train_set <- cbind(trainactivity_labels, trainsubject, train_set)
+train_set <- merge(activity, train_set, by.x = "code", by.y = "V1", sort=FALSE)
+train_set <- train_set[,-1]
 
-colnames(train_set) <- column_labels[,2]
-colnames(train_labels) <- c("label")
-colnames(train_set) <- paste(column_labels[,2],"")
+combineddata <- rbind(test_set, train_set)
 
-meancols <- train_set[,grep("mean",colnames(train_set))]
-stdcols <- train_set[,grep("std",colnames(train_set))]
+combineddata <- combineddata[,c(1,2,grep("mean",colnames(combineddata)),grep("std",colnames(combineddata)))]
+measurevars <- colnames(combineddata)
+measurevars <- measurevars[3:563]
 
-train_set <- cbind(meancols,stdcols,train_labels)
-train_set$set <- "train"
+# Melt dataset
+activitydata_melt <- melt(combineddata, id=c("subject","activity"))
 
-activity_data <- rbind(test_set, train_set)
-
-activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
-colnames(activity_labels) <- c("label","labeldescription")
-activity_data <- merge(activity_data, activity_labels, by.x = "label",by.y = "label")
-activity_data
+dcast(activitydata_melt, subject + activity ~ variable, mean)
 }
 
-activitydata <- cleanactivitydata()
+write.table(activitydata_mean(),"activitydata_mean.txt",row.names=FALSE)
