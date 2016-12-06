@@ -11,6 +11,7 @@ activity - The type of activity performed by the subject
 
 ### Measurements
 All values are averaged by subject and activity
+
 tBodyAccmeanX
 
 tBodyAccmeanY
