@@ -1,15 +1,16 @@
 ## Codebook
 The output of this script writes a cleaned table to the working directory. The table and fields for this output are detailed below:
 
-# Table: 
+### Table
 This table contains mean of mean and standard deviation measurements from the Samsung dataset
 
-# Identifiers
+### Identifiers
 subject - The ID of the test subject
 
 activity - The type of activity performed by the subject
 
-# Measurements - All values are averaged by subject and activity
+### Measurements
+All values are averaged by subject and activity
 tBodyAccmeanX
 
 tBodyAccmeanY
